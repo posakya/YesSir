@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="7dp"
+    android:background="#d3d3d3"
+    android:orientation="vertical"
+    tools:context="com.example.roshan.yessir.MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_Date"
+        android:textAlignment="center"
+        android:textSize="15dp"
+        android:textColor="#986"
+        android:layout_margin="10dp"
+        android:textStyle="bold"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/detail_list_view"
+        android:background="@drawable/gradient"
+        android:divider="#d3d3d3"
+        android:choiceMode="multipleChoice"
+        android:listSelector="#768"
+        android:dividerHeight="7dp"></ListView>
+
+</LinearLayout>

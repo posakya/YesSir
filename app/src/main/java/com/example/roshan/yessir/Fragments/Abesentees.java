@@ -1,6 +1,8 @@
 package com.example.roshan.yessir.Fragments;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -51,6 +54,22 @@ public class Abesentees extends Fragment {
         lv = (ListView) myView.findViewById(R.id.detail_list_view);
         new GetContacts().execute();
         getActivity().setTitle("Absentees");
+        lv.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        HashMap<String, String> student = absentlist.get(position);
+                        if(student.containsKey("Parents_No")) {
+                            String tel = student.get("Parents_No");
+                            Intent callIntent = new Intent(Intent.ACTION_CALL);
+                            callIntent.setData(Uri.parse("tel:"+tel));
+                            startActivity(callIntent);
+                        }
+                        Toast.makeText(getActivity(), student.get("Parents_No"), Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
         return myView;
     }
     private class GetContacts extends AsyncTask<String, Object, String> {

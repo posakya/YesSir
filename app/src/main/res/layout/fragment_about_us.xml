@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_about_us"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
-    android:orientation="vertical">
+    android:padding="20dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,7 +28,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:text="https://github.com/posakya/"
         android:textSize="20dp"
         android:autoLink="web"
@@ -38,6 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Contact Us"
+        android:layout_marginTop="20dp"
         android:textStyle="bold"
         android:textSize="20dp"/>
     <View
@@ -47,9 +51,21 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="986*******"
+        android:text="Mobile: 9860144817/9840012847"
+        android:id="@+id/txt_mobile"
         android:textSize="20dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="20dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tel: 01-4256744"
+        android:textSize="20dp"
+        android:id="@+id/txt_tel"
+        android:layout_marginTop="20dp"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -59,16 +75,19 @@
         android:layout_height="wrap_content"
         android:text="Lalitpur, Nepal"
         android:textSize="20dp"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="20dp"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@android:color/darker_gray"/>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:textStyle="italic"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20dp"
         android:textAlignment="center"
-        android:text="Copyright kathford  engineering college"/>
-
-</LinearLayout>
+        android:text="@string/action_settings"/>
+    </LinearLayout>
+</ScrollView>

@@ -7,6 +7,10 @@
     android:background="#d3d3d3"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_get_count"/>
 
     <ListView
         android:layout_width="match_parent"

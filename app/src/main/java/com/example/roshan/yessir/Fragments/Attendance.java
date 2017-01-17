@@ -1,5 +1,7 @@
 package com.example.roshan.yessir.Fragments;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ListView;
 
 import android.widget.TextView;
@@ -42,8 +45,9 @@ import java.util.List;
 public class Attendance extends Fragment {
     View myView;
     private ListView listView;
+    private GridView gridview;
     private ProgressDialog dialog;
-    private TextView txt_date;
+    private TextView txt_date, txt_count;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
@@ -55,14 +59,17 @@ public class Attendance extends Fragment {
         dialog.setMessage("Loading, please wait");
         new JSONTask().execute("http://10.42.0.1/AttendanceSystem/student_detail.php");
         txt_date=(TextView)myView.findViewById(R.id.txt_Date);
-        listView = (ListView) myView.findViewById(R.id.detail_list_view);
+      listView = (ListView) myView.findViewById(R.id.detail_list_view);
+       // gridview = (GridView) myView.findViewById(R.id.gridview);
+        txt_count = (TextView) myView.findViewById(R.id.txt_get_count);
         long date = System.currentTimeMillis();
 
-        SimpleDateFormat sdf = new SimpleDateFormat(" MMM MM dd, yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat(" MMM MM dd, yyyy HH:mm:ss a");
         String dateString = sdf.format(date);
         txt_date.setText(dateString);
         itemClick();
-        getActivity().setTitle("Student List");
+        //getActivity().setTitle("Student List");
+
         return myView;
     }
 
@@ -76,10 +83,19 @@ public class Attendance extends Fragment {
 
                         Toast.makeText(getActivity(), "Added to Absent List", Toast.LENGTH_SHORT).show();
 
+
+                        //phone call
+//                            String tel = value.getPhone();
+//                            Intent callIntent = new Intent(Intent.ACTION_CALL);
+//                            callIntent.setData(Uri.parse("tel:"+tel));
+//                            startActivity(callIntent);
+
+
                     }
                 }
 
         );
+
     }
 
     public class JSONTask extends AsyncTask<String, String, List<Absent_Info>> {
@@ -156,6 +172,8 @@ public class Attendance extends Fragment {
             dialog.dismiss();
             ItemAdapter adapter = new ItemAdapter(getActivity(),R.layout.attendance_detail, result);
             listView.setAdapter(adapter);
+            String count = ""+listView.getAdapter().getCount();
+            txt_count.setText(count);
 
         }
 

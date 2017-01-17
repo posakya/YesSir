@@ -24,7 +24,7 @@ public class AboutUs extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view= inflater.inflate(R.layout.fragment_about_us, container, false);
-        getActivity().setTitle("About Us");
+//        getActivity().setTitle("About Us");
         txt_mobile = (TextView)view.findViewById(R.id.txt_mobile);
         txt_tel = (TextView)view.findViewById(R.id.txt_tel);
 

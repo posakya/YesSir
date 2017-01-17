@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="7dp"
-    android:background="#d3d3d3"
+   android:background="@drawable/bluee"
+    android:descendantFocusability="blocksDescendants"
     android:orientation="vertical"
     tools:context="com.example.roshan.yessir.MainActivity">
 
@@ -18,15 +19,32 @@
         android:textColor="#986"
         android:layout_margin="10dp"
         android:textStyle="bold"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_get_count"/>
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/detail_list_view"
-        android:background="@drawable/gradient"
-        android:divider="#d3d3d3"
+        android:padding="10dp"
         android:choiceMode="multipleChoice"
         android:listSelector="#768"
-        android:dividerHeight="7dp"></ListView>
+      ></ListView>
+<!--<GridView-->
+    <!--android:id="@+id/gridview"-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:columnWidth="90dp"-->
+    <!--android:numColumns="auto_fit"-->
+    <!--android:padding="10dp"-->
+    <!--android:divider="#d3d3d3"-->
+    <!--android:dividerHeight="7dp"-->
+    <!--android:verticalSpacing="20dp"-->
+    <!--android:horizontalSpacing="50dp"-->
+    <!--android:stretchMode="columnWidth"-->
+    <!--android:gravity="center"/>-->
+
 
 </LinearLayout>

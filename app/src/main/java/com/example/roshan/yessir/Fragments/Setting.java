@@ -45,7 +45,7 @@ public class Setting extends Fragment {
 
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();
-        getActivity().setTitle("Setting");
+      //  getActivity().setTitle("Setting");
         //get current user
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 

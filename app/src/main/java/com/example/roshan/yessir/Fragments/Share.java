@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -36,7 +37,7 @@ private View view;
         btn_Save = (Button) view.findViewById(R.id.btn_save);
         editText = (EditText) view.findViewById(R.id.edit_days);
         sharedpreferences = getActivity().getSharedPreferences("working days", Context.MODE_PRIVATE);
-        getActivity().setTitle("Days");
+//        getActivity().setTitle("Days");
         String working_Days = sharedpreferences.getString("No. of Working Days","");
         txt_working_days.setText("Working Days: "+working_Days);
 
@@ -50,8 +51,11 @@ private View view;
                 Toast.makeText(getActivity(), "Saved number of working days!!!!", Toast.LENGTH_SHORT).show();
                 String working_Days = sharedpreferences.getString("No. of Working Days","");
                 txt_working_days.setText("Working Days: "+working_Days);
+                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(btn_Save.getWindowToken(), 0);
             }
         });
+
 
         return view;
     }

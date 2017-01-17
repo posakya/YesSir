@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.roshan.yessir.JavaClass.HttpHandler;
@@ -37,6 +38,7 @@ public class Abesentees extends Fragment {
     private static String url = "http://10.42.0.1/AttendanceSystem/absent_info_api.php";
 
     ArrayList<HashMap<String, String>> absentlist;
+    private TextView txt_count;
 
 
     @Override
@@ -52,8 +54,9 @@ public class Abesentees extends Fragment {
         myView= inflater.inflate(R.layout.fragment_abesentees, container, false);
         absentlist = new ArrayList<>();
         lv = (ListView) myView.findViewById(R.id.detail_list_view);
+        txt_count = (TextView) myView.findViewById(R.id.txt_get_count);
         new GetContacts().execute();
-        getActivity().setTitle("Absentees");
+//        getActivity().setTitle("Absentees");
         lv.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
@@ -149,6 +152,8 @@ public class Abesentees extends Fragment {
                     R.id.txt_name,R.id.txt_section,R.id.txt_phone,R.id.txt_subject,R.id.txt_date});
 
             lv.setAdapter(adapter);
+            String count = ""+lv.getAdapter().getCount();
+            txt_count.setText(count);
         }
 
     }

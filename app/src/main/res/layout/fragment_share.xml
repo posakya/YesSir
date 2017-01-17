@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10dp"
+
     tools:context="com.example.roshan.yessir.Fragments.Share">
 
     <TextView
@@ -22,6 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/edit_days"
+            android:clickable="true"
             android:layout_marginTop="18dp"/>
     <TextView
         android:layout_width="match_parent"

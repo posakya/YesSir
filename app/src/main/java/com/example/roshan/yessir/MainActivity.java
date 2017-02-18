@@ -1,6 +1,7 @@
 package com.example.roshan.yessir;
 
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -19,6 +20,7 @@ import com.example.roshan.yessir.Fragments.Attendance;
 import com.example.roshan.yessir.Fragments.Home;
 import com.example.roshan.yessir.Fragments.Setting;
 import com.example.roshan.yessir.Fragments.Share;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import static android.R.id.toggle;
 
@@ -26,42 +28,32 @@ import static android.R.id.toggle;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-DrawerLayout drawer;
+    DrawerLayout drawer;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Home");
-//        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-//                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-//        drawer.setDrawerListener(toggle);
-//        toggle.syncState();
-//
-//
-//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                if (drawer.isDrawerOpen(GravityCompat.START)) {
-//                   getSupportActionBar().setTitle("Rosahn");
-//                } else {
-//                    drawer.openDrawer(GravityCompat.START);
-//                }
-//            }
-//        });
         FragmentManager fragmentManager = getSupportFragmentManager();
         {
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame
                             , new Home())
-                    .commit();}
+                    .commit();
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close){
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
 
             @Override
             public void onDrawerClosed(View drawerView) {
@@ -83,9 +75,21 @@ DrawerLayout drawer;
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         navigationView.setNavigationItemSelectedListener(this);
-
     }
 
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        if(item.getItemId() == android.R.id.home) {
+//            if(drawer.isDrawerOpen(Gravity.RIGHT)) {
+//                drawer.closeDrawer(Gravity.RIGHT);
+//            }
+//            else {
+//                drawer.openDrawer(Gravity.RIGHT);
+//            }
+//            return true;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @Override
     public void onBackPressed() {
@@ -131,7 +135,7 @@ DrawerLayout drawer;
                             , new Setting())
                     .commit();
 
-        }  else if (id == R.id.nav_work) {
+        } else if (id == R.id.nav_work) {
             getSupportActionBar().setTitle("Days");
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame
@@ -148,11 +152,10 @@ DrawerLayout drawer;
 
         }
 
-       DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-       drawer.closeDrawer(GravityCompat.START);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
 
 }

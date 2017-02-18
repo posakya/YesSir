@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="7dp"
-   android:background="@drawable/bluee"
+    android:background="@drawable/bluee"
     android:descendantFocusability="blocksDescendants"
     android:orientation="vertical"
     tools:context="com.example.roshan.yessir.MainActivity">
@@ -29,9 +29,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/detail_list_view"
         android:padding="10dp"
-        android:choiceMode="multipleChoice"
-        android:listSelector="#768"
-      ></ListView>
+        android:dividerHeight="40dp"
+        android:divider="@android:color/transparent"
+        android:scrollbarThumbVertical="@android:color/transparent"
+        android:overScrollMode="never"
+        />
 <!--<GridView-->
     <!--android:id="@+id/gridview"-->
     <!--android:layout_width="fill_parent"-->

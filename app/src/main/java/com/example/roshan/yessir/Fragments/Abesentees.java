@@ -57,6 +57,7 @@ public class Abesentees extends Fragment {
         txt_count = (TextView) myView.findViewById(R.id.txt_get_count);
         new GetContacts().execute();
 //        getActivity().setTitle("Absentees");
+        lv.setOverScrollMode(View.OVER_SCROLL_NEVER);
         lv.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override

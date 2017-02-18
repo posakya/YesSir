@@ -18,6 +18,8 @@
         android:id="@+id/detail_list_view"
         android:background="@drawable/gradient"
         android:divider="#d3d3d3"
-        android:dividerHeight="7dp"></ListView>
+        android:overScrollMode="never"
+        android:scrollbarThumbVertical="@android:color/transparent"
+        android:dividerHeight="7dp" />
 
 </LinearLayout>

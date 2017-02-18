@@ -14,6 +14,15 @@ public class Absent_Info {
     private String Parents_No;
     private String Date;
     private String Time;
+    private String jpt;
+
+    public String getJpt() {
+        return jpt;
+    }
+
+    public void setJpt(String jpt) {
+        this.jpt = jpt;
+    }
 
     public String getParents_No() {
         return Parents_No;

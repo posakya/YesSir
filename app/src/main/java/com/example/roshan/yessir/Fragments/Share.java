@@ -55,8 +55,6 @@ private View view;
                 imm.hideSoftInputFromWindow(btn_Save.getWindowToken(), 0);
             }
         });
-
-
         return view;
     }
 

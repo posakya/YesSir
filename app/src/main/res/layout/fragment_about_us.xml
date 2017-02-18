@@ -4,6 +4,7 @@
     android:id="@+id/activity_about_us"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:scrollbarThumbVertical="@android:color/transparent"
     android:padding="20dp">
     <LinearLayout
         android:layout_width="match_parent"

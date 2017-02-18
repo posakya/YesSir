@@ -1,7 +1,10 @@
 package com.example.roshan.yessir.Fragments;
 
+import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.net.Uri;
+import android.net.wifi.WifiManager;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -40,6 +43,8 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class Attendance extends Fragment {
@@ -47,7 +52,7 @@ public class Attendance extends Fragment {
     private ListView listView;
     private GridView gridview;
     private ProgressDialog dialog;
-    private TextView txt_date, txt_count;
+    private TextView  txt_count;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
@@ -58,15 +63,32 @@ public class Attendance extends Fragment {
         dialog.setCancelable(false);
         dialog.setMessage("Loading, please wait");
         new JSONTask().execute("http://10.42.0.1/AttendanceSystem/student_detail.php");
-        txt_date=(TextView)myView.findViewById(R.id.txt_Date);
+
       listView = (ListView) myView.findViewById(R.id.detail_list_view);
+        listView.setOverScrollMode(View.OVER_SCROLL_NEVER);
+       final TextView txt_date = (TextView) myView.findViewById(R.id.txt_Date);
+        new Timer().schedule(new TimerTask() {
+                           @Override
+                           public void run() {
+                               if (isVisible()) {
+                                   getActivity().runOnUiThread(new Runnable() {
+                                       @Override
+                                       public void run() {
+                                           long date = System.currentTimeMillis();
+                                         //  long date = System.currentTimeMillis()  + (1000 * 60 * 60 * 24);
+                                           SimpleDateFormat sdf = new SimpleDateFormat(" EEEE - MMM MM dd, yyyy HH:mm:ss a");
+                                           String dateString = sdf.format(date);
+                                           // This code will always run on the UI thread, therefore is safe to modify UI elements.
+                                           txt_date.setText(dateString);
+                                       }
+                                   });
+                               }    }
+
+
+        },0, 1000);
        // gridview = (GridView) myView.findViewById(R.id.gridview);
         txt_count = (TextView) myView.findViewById(R.id.txt_get_count);
-        long date = System.currentTimeMillis();
 
-        SimpleDateFormat sdf = new SimpleDateFormat(" MMM MM dd, yyyy HH:mm:ss a");
-        String dateString = sdf.format(date);
-        txt_date.setText(dateString);
         itemClick();
         //getActivity().setTitle("Student List");
 
@@ -79,7 +101,7 @@ public class Attendance extends Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Absent_Info value = (Absent_Info) parent.getItemAtPosition(position);
-                        new background(getActivity()).execute("Absent", value.getName(), value.getSection(), value.getParents_No(), value.getSubject(),value.getDate());
+                        new background(getActivity()).execute("Absent", value.getName(), value.getSection(), value.getParents_No(), value.getSubject(),value.getDate(),value.getJpt());
 
                         Toast.makeText(getActivity(), "Added to Absent List", Toast.LENGTH_SHORT).show();
 
@@ -135,7 +157,6 @@ public class Attendance extends Fragment {
                     itemList1.setParents_No(j.optString("Parents_No"));
                     itemList1.setDate(j.optString("Date"));
                     itemList1.setTime(j.optString("Time"));
-
                     itemList.add(itemList1);
                 }
                 return itemList;
@@ -209,6 +230,7 @@ public class Attendance extends Fragment {
                 holder.subject = (TextView) convertView.findViewById(R.id.txt_subject);
                 holder.time = (TextView) convertView.findViewById(R.id.txt_time);
 
+
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder) convertView.getTag();
@@ -231,11 +253,12 @@ public class Attendance extends Fragment {
             holder.section.setText(itemList.get(position).getSection());
             holder.subject.setText(itemList.get(position).getSubject());
             holder.time.setText(itemList.get(position).getTime());
+
             return convertView;
         }
 
         class ViewHolder {
-            private TextView std_id,name,date,time,section,subject,phone;
+            private TextView std_id,name,date,time,section,subject,phone,jpt;
         }
     }
 }
